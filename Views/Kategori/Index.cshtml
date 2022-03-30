@@ -1,0 +1,107 @@
+@model IEnumerable<marketplace.ViewModels.KategoriViewModel>
+@{
+
+    ViewData["Title"] = "Daftar Kategori";
+
+    int i = 0;
+}
+
+<form asp-action="delete" method="post">
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="pos_middle">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding: 20px 25px;">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="text-center font-grey-gallery" style="font-weight: 600;">Are you sure to delete this
+                            item?</h4>
+                        <br />
+                        <div class="row">
+                            <input type="hidden" id="itemId" name="id" />
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-block green uppercase" data-backdrop="static"
+                                    data-keyboard="false">Yes</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-block red uppercase" data-backdrop="static"
+                                    data-keyboard="false" data-dismiss="modal">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <th>No</th>
+        <th>Icon</th>
+        <th>Nama</th>
+        <th>Deskripsi</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+
+        {
+
+            foreach (var item in Model)
+
+            {
+
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td><img src="@Url.Content(item.Icon)" width="50" height="50" /></td>
+                    <td>@item.Nama</td>
+                    <td>@item.Deskripsi</td>
+                    <td>
+                        <a href="kategori/edit/@item.Id">Edit</a>
+                        <a href="kategori/detail/@item.Id">Detail</a>
+                        <a href="kategori/Delete/@item.Id">Delete</a>
+                        @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+                    </td>
+                </tr>
+
+            }
+
+        }
+
+        else
+
+        {
+            <tr>
+                <td colspan="4">Data kosong</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //Show modal for delete confirmation
+            $(document).on("click", ".btn-delete", function () {
+            
+                var id = $(this).data('id');
+                console.log('id kategori: ' + id);
+                //ubah value yang id = itemId yang ada di dalam class .modal-body
+                $(".modal-body #itemId").val(id);
+                //tampilkan modal/dialog
+                $("#confirmDelete").modal('show');
+            });
+        });
+    </script>
+}

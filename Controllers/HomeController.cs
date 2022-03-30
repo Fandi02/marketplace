@@ -82,7 +82,7 @@ public class HomeController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TambahKategori(KategoriProduk tambahKategori)
+    public async Task<IActionResult> TambahKategori(Kategori tambahKategori)
     {
         if (ModelState.IsValid)
         {

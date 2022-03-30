@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using marketplace.Datas;
+using marketplace.Interfaces;
+using marketplace.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,14 @@ builder.Services.AddDbContext<marketplaceContext>(
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors()
         );
+builder.Services.AddControllersWithViews();
+
+#region  Business Services Injection
+
+builder.Services.AddScoped<IKategoriService, KategoriService>();
+builder.Services.AddScoped<IProdukService, ProdukService>();
+
+#endregion
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -19,7 +19,7 @@ namespace marketplace.Datas
 
         public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Alamat> Alamats { get; set; } = null!;
-        public virtual DbSet<KategoriProduk> KategoriProduks { get; set; } = null!;
+        public virtual DbSet<Kategori> Kategoris { get; set; } = null!;
         public virtual DbSet<Keranjang> Keranjangs { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<Pembayaran> Pembayarans { get; set; } = null!;
@@ -113,12 +113,12 @@ namespace marketplace.Datas
                     .HasColumnName("provinsi");
             });
 
-            modelBuilder.Entity<KategoriProduk>(entity =>
+            modelBuilder.Entity<Kategori>(entity =>
             {
                 entity.HasKey(e => e.IdKategori)
                     .HasName("PRIMARY");
 
-                entity.ToTable("kategori_produk");
+                entity.ToTable("kategori");
 
                 entity.Property(e => e.IdKategori)
                     .HasColumnType("int(11)")

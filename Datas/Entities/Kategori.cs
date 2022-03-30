@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace marketplace.Datas.Entities
 {
-    public partial class KategoriProduk
+    public partial class Kategori
     {
-        public KategoriProduk()
+        public Kategori()
         {
             ProdukKategoris = new HashSet<ProdukKategori>();
         }

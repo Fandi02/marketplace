@@ -11,22 +11,22 @@ using marketplace.Datas.Entities;
 
 namespace marketplace.Controllers
 {
-    public class KategoriProduksController : Controller
+    public class AdminsController : Controller
     {
         private readonly marketplaceContext _context;
 
-        public KategoriProduksController(marketplaceContext context)
+        public AdminsController(marketplaceContext context)
         {
             _context = context;
         }
 
-        // GET: KategoriProduks
+        // GET: Admins
         public async Task<IActionResult> Index()
         {
-            return View(await _context.KategoriProduks.ToListAsync());
+            return View(await _context.Admins.ToListAsync());
         }
 
-        // GET: KategoriProduks/Details/5
+        // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace marketplace.Controllers
                 return NotFound();
             }
 
-            var kategoriProduk = await _context.KategoriProduks
-                .FirstOrDefaultAsync(m => m.IdKategori == id);
-            if (kategoriProduk == null)
+            var admin = await _context.Admins
+                .FirstOrDefaultAsync(m => m.IdAdmin == id);
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(kategoriProduk);
+            return View(admin);
         }
 
-        // GET: KategoriProduks/Create
+        // GET: Admins/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: KategoriProduks/Create
+        // POST: Admins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdKategori,Nama,Deskripsi,Icon")] KategoriProduk kategoriProduk)
+        public async Task<IActionResult> Create([Bind("IdAdmin,Nama,NoHp,Username,Password")] Admin admin)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(kategoriProduk);
+                _context.Add(admin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(kategoriProduk);
+            return View(admin);
         }
 
-        // GET: KategoriProduks/Edit/5
+        // GET: Admins/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace marketplace.Controllers
                 return NotFound();
             }
 
-            var kategoriProduk = await _context.KategoriProduks.FindAsync(id);
-            if (kategoriProduk == null)
+            var admin = await _context.Admins.FindAsync(id);
+            if (admin == null)
             {
                 return NotFound();
             }
-            return View(kategoriProduk);
+            return View(admin);
         }
 
-        // POST: KategoriProduks/Edit/5
+        // POST: Admins/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdKategori,Nama,Deskripsi,Icon")] KategoriProduk kategoriProduk)
+        public async Task<IActionResult> Edit(int id, [Bind("IdAdmin,Nama,NoHp,Username,Password")] Admin admin)
         {
-            if (id != kategoriProduk.IdKategori)
+            if (id != admin.IdAdmin)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace marketplace.Controllers
             {
                 try
                 {
-                    _context.Update(kategoriProduk);
+                    _context.Update(admin);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KategoriProdukExists(kategoriProduk.IdKategori))
+                    if (!AdminExists(admin.IdAdmin))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace marketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(kategoriProduk);
+            return View(admin);
         }
 
-        // GET: KategoriProduks/Delete/5
+        // GET: Admins/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace marketplace.Controllers
                 return NotFound();
             }
 
-            var kategoriProduk = await _context.KategoriProduks
-                .FirstOrDefaultAsync(m => m.IdKategori == id);
-            if (kategoriProduk == null)
+            var admin = await _context.Admins
+                .FirstOrDefaultAsync(m => m.IdAdmin == id);
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(kategoriProduk);
+            return View(admin);
         }
 
-        // POST: KategoriProduks/Delete/5
+        // POST: Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var kategoriProduk = await _context.KategoriProduks.FindAsync(id);
-            _context.KategoriProduks.Remove(kategoriProduk);
+            var admin = await _context.Admins.FindAsync(id);
+            _context.Admins.Remove(admin);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool KategoriProdukExists(int id)
+        private bool AdminExists(int id)
         {
-            return _context.KategoriProduks.Any(e => e.IdKategori == id);
+            return _context.Admins.Any(e => e.IdAdmin == id);
         }
     }
 }

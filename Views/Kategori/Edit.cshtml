@@ -1,17 +1,17 @@
-﻿@model marketplace.Datas.Entities.KategoriProduk
+@model marketplace.ViewModels.KategoriViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
-
-<h4>KategoriProduk</h4>
+<h4>Edit Kategori</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control">
             <div class="form-group">
                 <label asp-for="Nama" class="control-label"></label>
                 <input asp-for="Nama" class="form-control" />
@@ -30,9 +30,8 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
-    </div>
-</div>
+            </form>
+            
 
 <div>
     <a asp-action="Index">Back to List</a>
