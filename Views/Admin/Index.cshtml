@@ -1,4 +1,4 @@
-﻿@model IEnumerable<marketplace.Datas.Entities.Admin>
+﻿@model IEnumerable<marketplace.ViewModels.AdminViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nama)
             </th>
@@ -30,6 +33,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nama)
             </td>

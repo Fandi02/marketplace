@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Rendering;
 @model marketplace.ViewModels.ProdukViewModel
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
 }
 
 <h4>Edit Produk</h4>
@@ -32,20 +34,28 @@
                 <span asp-validation-for="Stok" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gambar" class="control-label"></label>
-                <input asp-for="Gambar" class="form-control" />
-                <span asp-validation-for="Gambar" class="text-danger"></span>
+                <label asp-for="GambarFile" class="control-label"></label>
+                <input asp-for="GambarFile" type="file" class="form-control" />
+                <span asp-validation-for="GambarFile" class="text-danger"></span>
+                <img src="~/@Model.GambarSrc" height="100" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="KategoriId" class="control-label"></label>
+                <select asp-for="KategoriId" multiple class="form-select" asp-items="@ViewBag.KategoriDataSource">
+
+                </select>
+                <span asp-validation-for="KategoriId" class="text-danger"></span>
             </div>
-            </form>
-            
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using marketplace.Models;
 using marketplace.ViewModels;
@@ -7,32 +7,33 @@ using marketplace.Interfaces;
 
 namespace marketplace.Controllers;
 
-
-public class KategoriController : Controller
+public class AdminController : Controller
 {
-    private readonly IKategoriService _kategoriService;
-    private readonly ILogger<KategoriController> _logger;
+    private readonly IAdminService _adminService;
+    private readonly ILogger<AdminController> _logger;
 
-    public KategoriController(ILogger<KategoriController> logger, IKategoriService kategoriService)
+    public AdminController(ILogger<AdminController> logger, IAdminService adminService)
     {
         _logger = logger;
-        _kategoriService = kategoriService;
+        _adminService = adminService;
     }
 
     public async Task<IActionResult> Index()
     {
-        var dbResult = await _kategoriService.GetAll();
+        var dbResult = await _adminService.GetAll();
 
-        var viewModels = new List<KategoriViewModel>();
+        var viewModels = new List<AdminViewModel>();
 
         for (int i = 0; i < dbResult.Count; i++)
         {
-            viewModels.Add(new KategoriViewModel
+            viewModels.Add(new AdminViewModel
             {
-                Id = dbResult[i].IdKategori,
+                IdAdmin = dbResult[i].IdAdmin,
                 Nama = dbResult[i].Nama,
-                Deskripsi = dbResult[i].Deskripsi,
-                Icon = dbResult[i].Icon,
+                NoHp = dbResult[i].NoHp,
+                Username = dbResult[i].Username,
+                Password = dbResult[i].Password,
+                Email = dbResult[i].Email,
             });
         }
 
@@ -41,12 +42,12 @@ public class KategoriController : Controller
 
     public IActionResult Create()
     {
-        return View(new KategoriViewModel());
+        return View(new AdminViewModel());
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(KategoriViewModel request)
+    public async Task<IActionResult> Create(AdminViewModel request)
     {
         if (!ModelState.IsValid)
         {
@@ -54,7 +55,7 @@ public class KategoriController : Controller
         }
         try
         {
-            await _kategoriService.Add(request.ConvertToDbModel());
+            await _adminService.Add(request.ConvertToDbModel());
 
             return Redirect(nameof(Index));
         }
@@ -78,18 +79,18 @@ public class KategoriController : Controller
             return BadRequest();
         }
 
-        var result = await _kategoriService.Get(id.Value);
+        var result = await _adminService.Get(id.Value);
 
         if (result == null)
         {
             return NotFound();
         }
-        return View(new KategoriViewModel(result));
+        return View(new AdminViewModel(result));
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, KategoriViewModel request)
+    public async Task<IActionResult> Edit(int? id, AdminViewModel request)
     {
         if (id == null)
         {
@@ -101,7 +102,7 @@ public class KategoriController : Controller
         }
         try
         {
-            await _kategoriService.Update(request.ConvertToDbModel());
+            await _adminService.Update(request.ConvertToDbModel());
             return RedirectToAction(nameof(Index));
         }
         catch (InvalidOperationException ex)
@@ -116,22 +117,6 @@ public class KategoriController : Controller
         return View(request);
     }
 
-    // public async Task<IActionResult> Detail(int? id)
-    // {
-    //     if (id == null)
-    //     {
-    //         return BadRequest();
-    //     }
-
-    //     var result = await _kategoriService.Get(id.Value);
-
-    //     if (result == null)
-    //     {
-    //         return NotFound();
-    //     }
-
-    //     return View(new KategoriViewModel(result));
-    // }
 
     public async Task<IActionResult> Delete(int? id){
         if(id == null)
@@ -139,25 +124,25 @@ public class KategoriController : Controller
             return BadRequest();
         }
 
-        var result = await _kategoriService.Get(id.Value);
+        var result = await _adminService.Get(id.Value);
 
         if(result == null) {
             return NotFound();
         }
 
-        return View(new KategoriViewModel(result));
+        return View(new AdminViewModel(result));
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(int? id, KategoriViewModel request)
+    public async Task<IActionResult> Delete(int? id, AdminViewModel request)
     {
         if(id == null) {
             return BadRequest();
         }
         
         try{
-            await _kategoriService.Delete(id.Value);
+            await _adminService.Delete(id.Value);
 
             return RedirectToAction(nameof(Index));  
         }catch(InvalidOperationException ex){

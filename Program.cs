@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using marketplace.Datas;
 using marketplace.Interfaces;
 using marketplace.Services;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,15 +19,27 @@ builder.Services.AddDbContext<marketplaceContext>(
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors()
         );
-builder.Services.AddControllersWithViews();
 
 #region  Business Services Injection
 
+builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IKategoriService, KategoriService>();
 builder.Services.AddScoped<IProdukService, ProdukService>();
+builder.Services.AddScoped<IProdukKategoriService, ProdukKategoriService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(
+        options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(360);
+                options.SlidingExpiration = true;
+                options.AccessDeniedPath = "/Home/Denied";
+                options.LoginPath = "/Account/Login";
+            }
+    );
 
 #endregion
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -42,6 +56,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

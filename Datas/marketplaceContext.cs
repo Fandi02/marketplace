@@ -54,6 +54,10 @@ namespace marketplace.Datas
                     .HasColumnType("int(11)")
                     .HasColumnName("id_admin");
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(25)
+                    .HasColumnName("email");
+
                 entity.Property(e => e.Nama)
                     .HasMaxLength(25)
                     .HasColumnName("nama");

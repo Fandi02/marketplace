@@ -11,6 +11,7 @@ using marketplace.Datas.Entities;
 
 namespace marketplace.Controllers
 {
+    
     public class PembelisController : Controller
     {
         private readonly marketplaceContext _context;
