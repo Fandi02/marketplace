@@ -28,6 +28,7 @@ builder.Services.AddScoped<IProdukService, ProdukService>();
 builder.Services.AddScoped<IProdukKategoriService, ProdukKategoriService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IKeranjangService, KeranjangService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(
         options =>

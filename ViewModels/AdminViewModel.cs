@@ -49,7 +49,7 @@ public class AdminViewModel
                 Nama = this.Nama,
                 NoHp = this.NoHp,
                 Username = this.Username,
-                Password = this.Password,
+                // Password = this.Password,
                 Email = this.Email,
             };
         }

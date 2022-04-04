@@ -16313,6 +16313,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\AccountCustomer\\Register.cshtml",
+      "TargetPath": "Views\\AccountCustomer\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Admin\\Delete.cshtml",
       "TargetPath": "Views\\Admin\\Delete.cshtml",
       "FileKind": "mvc"
@@ -16335,6 +16340,11 @@
     {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Admin\\Index.cshtml",
       "TargetPath": "Views\\Admin\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Keranjang\\Index.cshtml",
+      "TargetPath": "Views\\Keranjang\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16378,11 +16388,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Admin\\Details.cshtml",
-      "TargetPath": "Views\\Admin\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -16408,6 +16413,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\AccountCustomer\\Login.cshtml",
+      "TargetPath": "Views\\AccountCustomer\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Account\\Login.cshtml",
       "TargetPath": "Views\\Account\\Login.cshtml",
       "FileKind": "mvc"
@@ -16430,6 +16440,11 @@
     {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Admin\\Create.cshtml",
       "TargetPath": "Views\\Admin\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Home\\Produk.cshtml",
+      "TargetPath": "Views\\Home\\Produk.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16465,6 +16480,11 @@
     {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Home\\Denied.cshtml",
       "TargetPath": "Views\\Home\\Denied.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\AccountCustomer\\Registered.cshtml",
+      "TargetPath": "Views\\AccountCustomer\\Registered.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -4,39 +4,37 @@
     ViewData["Title"] = "Create";
     Layout = "_AdminLayout";
 }
-
-<h4>Create Kategori</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            @Html.AntiForgeryToken()
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nama" class="control-label"></label>
-                <input asp-for="Nama" class="form-control" />
-                <span asp-validation-for="Nama" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Deskripsi" class="control-label"></label>
-                <input asp-for="Deskripsi" class="form-control" />
-                <span asp-validation-for="Deskripsi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Icon" class="control-label"></label>
-                <input asp-for="Icon" class="form-control" />
-                <span asp-validation-for="Icon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Buat Kategori Baru</h4>
+            <p class="card-description">
+                Masukkan informasi kategori dalam form berikut
+            </p>
+            <form class="forms-sample" asp-action="Create" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nama" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Name" asp-for="Nama">
+                    <span asp-validation-for="Nama" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deskripsi" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Deskripsi Produk" asp-for="Deskripsi">
+                    <span asp-validation-for="Deskripsi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Icon" class="control-label"></label>
+                    <input asp-for="Icon" type="file" class="form-control" />
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
             </form>
-            
-
-<div>
-    <a asp-action="Index">Back to List</a>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
+        </div>
+    </div>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

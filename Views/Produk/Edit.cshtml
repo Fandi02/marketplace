@@ -6,56 +6,64 @@
     Layout = "_AdminLayout";
 }
 
-<h4>Edit Produk</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="IdProduk" type="hidden" class="form-control">
-            <div class="form-group">
-                <label asp-for="Nama" class="control-label"></label>
-                <input asp-for="Nama" class="form-control" />
-                <span asp-validation-for="Nama" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Deskripsi" class="control-label"></label>
-                <input asp-for="Deskripsi" class="form-control" />
-                <span asp-validation-for="Deskripsi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Harga" class="control-label"></label>
-                <input asp-for="Harga" class="form-control" />
-                <span asp-validation-for="Harga" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Stok" class="control-label"></label>
-                <input asp-for="Stok" class="form-control" />
-                <span asp-validation-for="Stok" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GambarFile" class="control-label"></label>
-                <input asp-for="GambarFile" type="file" class="form-control" />
-                <span asp-validation-for="GambarFile" class="text-danger"></span>
-                <img src="~/@Model.GambarSrc" height="100" />
-            </div>
-            <div class="form-group">
-                <label asp-for="KategoriId" class="control-label"></label>
-                <select asp-for="KategoriId" multiple class="form-select" asp-items="@ViewBag.KategoriDataSource">
-
-                </select>
-                <span asp-validation-for="KategoriId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
-            </div>
-        </form>
-
-
-        <div>
-            <a asp-action="Index">Back to List</a>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Produk</h4>
+            <p class="card-description">
+                Edit informasi produk dalam form berikut
+            </p>
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="IdProduk" type="hidden" class="form-control">
+                <div class="form-group">
+                    <label asp-for="Nama" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Name" asp-for="Nama">
+                    <span asp-validation-for="Nama" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deskripsi" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Deskripsi Produk" asp-for="Deskripsi">
+                    <span asp-validation-for="Deskripsi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Harga" for="exampleInput3"></label>
+                    <input class="form-control" id="exampleInput3" placeholder="Harga Produk" asp-for="Harga">
+                    <span asp-validation-for="Harga" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Stok" for="exampleInput4"></label>
+                    <input class="form-control" id="exampleInput4" placeholder="Stok Produk" asp-for="Stok">
+                    <span asp-validation-for="Stok" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deskripsi" for="exampleInput5"></label>
+                    <input class="form-control" id="exampleInput5" placeholder="Deskripsi Produk" asp-for="Deskripsi">
+                </div>
+                <div class="form-group">
+                    <label asp-for="GambarFile" class="control-label"></label>
+                    <input asp-for="GambarFile" type="file" class="form-control" />
+                    <span asp-validation-for="GambarFile" class="text-danger"></span>
+                </div>
+                <div class="form-grup">
+                    <img src="~/@Model.GambarSrc" height="100px" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="KategoriId" class="control-label"></label>
+                        <select asp-for="KategoriId" multiple class="form-select"
+                            asp-items="@ViewBag.KategoriDataSource">
+                        </select>
+                        <span asp-validation-for="KategoriId" class="text-danger"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Edit</button>
+            </form>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
         </div>
-
-        @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+    </div>
+</div>
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

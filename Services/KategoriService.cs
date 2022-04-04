@@ -50,7 +50,7 @@ public class KategoriService : BaseDbService, IKategoriService
 
     public async Task<Kategori?> Get(int id)
     {
-        var result = await dbContext.Kategoris.FirstOrDefaultAsync();
+        var result = await dbContext.Kategoris.FirstOrDefaultAsync(x=>x.IdKategori == id);
 
         if(result == null)
         {

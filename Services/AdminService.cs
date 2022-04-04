@@ -51,7 +51,7 @@ public class AdminService : BaseDbService, IAdminService
 
     public async Task<Admin?> Get(int id)
     {
-        var result = await dbContext.Admins.FirstOrDefaultAsync();
+        var result = await dbContext.Admins.FirstOrDefaultAsync(x => x.IdAdmin == id);
 
         if(result == null)
         {

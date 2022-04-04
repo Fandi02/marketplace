@@ -2,53 +2,51 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
 }
 
-<h1>Edit</h1>
-
-<h4>Admin</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdAdmin" />
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" disabled/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nama" class="control-label"></label>
-                <input asp-for="Nama" class="form-control" />
-                <span asp-validation-for="Nama" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoHp" class="control-label"></label>
-                <input asp-for="NoHp" class="form-control" />
-                <span asp-validation-for="NoHp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" type="password"/>
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Admin</h4>
+            <p class="card-description">
+                Edit informasi admin dalam form berikut
+            </p>
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="IdAdmin" type="hidden" class="form-control">
+                <div class="form-group">
+                    <label asp-for="Email" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Email" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nama" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Nama" asp-for="Nama">
+                    <span asp-validation-for="Nama" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NoHp" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="NoHp" asp-for="NoHp">
+                    <span asp-validation-for="NoHp" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Username" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Username" asp-for="Username">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Password" asp-for="Password" type="password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Edit</button>
+            </form>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
 @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

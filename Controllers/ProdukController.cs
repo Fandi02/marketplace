@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace marketplace.Controllers;
 
-[Authorize]
+[Authorize(Roles = AppConstant.ADMIN_ROLE)]
 public class ProdukController : Controller
 {
     private readonly IProdukService _produkService;
@@ -31,6 +31,7 @@ public class ProdukController : Controller
         _produkKategoriService = produkKategoriService;
     }
 
+    [Route("produk/index")]
     public async Task<IActionResult> Index()
     {
         var dbResult = await _produkService.GetAll();
@@ -160,8 +161,9 @@ public class ProdukController : Controller
 
             for (int i = 0; i < request.KategoriId.Length; i++)
             {
-                if (ProdukKategoris != null && ProdukKategoris.Any()){
-                    if(!ProdukKategoris.Any(x => x == request.KategoriId[i]))
+                if (ProdukKategoris != null && ProdukKategoris.Any())
+                {
+                    if (!ProdukKategoris.Any(x => x == request.KategoriId[i]))
                     {
                         produk.ProdukKategoris.Add(new Datas.Entities.ProdukKategori
                         {
@@ -183,7 +185,8 @@ public class ProdukController : Controller
             //Remove kategorid yang tidak dipilih
             if (ProdukKategoris != null && (produk.ProdukKategoris != null && produk.ProdukKategoris.Any()))
             {
-                foreach (var item in ProdukKategoris){
+                foreach (var item in ProdukKategoris)
+                {
                     if (!produk.ProdukKategoris.Any(x => x.IdKategori == item))
                     {
                         await _produkKategoriService.Remove(request.IdProduk, item);

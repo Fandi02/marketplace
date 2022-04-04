@@ -1,0 +1,23 @@
+@model marketplace.ViewModels.AccountLoginViewModel
+@{
+    ViewData["Title"] = "Registered";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Success Register</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<h4> Anda telah berhasil melakukan registrasi, silakan anda lakukan login terlebih dahulu sebelum berbelanja</h4>
+
+@Html.ActionLink("Login", "Login", "AccountCustomer")

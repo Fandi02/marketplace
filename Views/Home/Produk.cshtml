@@ -1,0 +1,114 @@
+@using System.Globalization
+@model marketplace.ViewModels.ProdukViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>Single Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="~/@Model.GambarSrc" alt="">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h3>@Model.Nama</h3>
+                    <p class="single-product-pricing">@Model.Harga.ToString("C", new CultureInfo("id-ID"))</p>
+                    <p>@Model.Deskripsi</p>
+                    <div class="single-product-form">
+                        <form action="index.html">
+                            <input type="number" placeholder="0">
+                        </form>
+                        <form asp-action="Add" asp-controller="Keranjang" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="produkId" value="@Model.IdProduk" />
+                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Tambahkan ke Keranjang</a>
+                        </form>
+                        <p><strong>Categories: </strong>Fruits, Organic</p>
+                    </div>
+                    <h4>Share:</h4>
+                    <ul class="product-share">
+                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                        <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
+
+
+<section class="product_section layout_padding2-top layout_padding-bottom">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                @Model.Nama
+            </h2>
+            <p>
+                @Model.Deskripsi
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">
+                <div class="box">
+                    <div class="img-box">
+                        <img src="~/@Model.GambarSrc" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <span class="rating">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        </span>
+                        @* <span>Terjual : @Model.Terjual</span> *@
+                        <span>Stok : @Model.Stok</span>
+                        <div class="price_box">
+                            <h6 class="price_heading">
+                                @Model.Harga.ToString("C", new CultureInfo("id-ID"))
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="box">
+                    <p>@Model.Deskripsi</p>
+                    <form asp-action="Add" asp-controller="Keranjang" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="produkId" value="@Model.IdProduk" />
+                        <button class="btn btn-primary" type="submit" value="Tambahkan ke Keranjang">Tambahkan ke
+                            keranjang</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                View All
+            </a>
+        </div>
+    </div>
+</section>

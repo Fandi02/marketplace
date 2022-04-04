@@ -56,8 +56,7 @@ public class AccountController : Controller
         {
             new Claim(ClaimTypes.Name, result.Email ?? result.Nama),
             new Claim("FullName", result.Nama),
-            // new Claim("Password", result.Password),
-            new Claim(ClaimTypes.Role, "Administrator"),
+            new Claim(ClaimTypes.Role, AppConstant.ADMIN_ROLE),
         };
 
             var claimsIdentity = new ClaimsIdentity(
@@ -74,7 +73,9 @@ public class AccountController : Controller
                 authProperties);
             #endregion
 
-            return RedirectToActionPermanent("Index", "Produk");
+            // return RedirectToActionPermanent("Index", "Produk");
+            //Agar tidak dapa kembali
+            return RedirectPermanentPreserveMethod("https://localhost::7077/produk/index");
         }
         catch (System.Exception)
         {

@@ -4,9 +4,12 @@ using marketplace.Models;
 using marketplace.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using marketplace.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace marketplace.Controllers;
 
+
+[Authorize(Roles = AppConstant.ADMIN_ROLE)]
 public class AdminController : Controller
 {
     private readonly IAdminService _adminService;

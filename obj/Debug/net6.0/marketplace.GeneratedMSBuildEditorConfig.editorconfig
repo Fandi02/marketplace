@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\MyBook11G\Documents\Bimbel Alkademi\Project\marketplace
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/AccountCustomer/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/AccountCustomer/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXFJlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/AccountCustomer/Registered.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXFJlZ2lzdGVyZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -29,10 +41,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Admin/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Admin/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Admin/Edit.cshtml]
@@ -67,6 +75,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Home/Produk.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdWsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Home/TambahKategori.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUYW1iYWhLYXRlZ29yaS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -89,6 +101,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Kategori/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Keranjang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2VyYW5qYW5nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MyBook11G/Documents/Bimbel Alkademi/Project/marketplace/Views/Pembelis/Create.cshtml]
