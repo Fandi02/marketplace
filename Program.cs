@@ -29,6 +29,8 @@ builder.Services.AddScoped<IProdukKategoriService, ProdukKategoriService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IKeranjangService, KeranjangService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+// builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(
         options =>
@@ -36,7 +38,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(360);
                 options.SlidingExpiration = true;
                 options.AccessDeniedPath = "/Home/Denied";
-                options.LoginPath = "/Account/Login";
+                options.LoginPath = "/AccountCustomer/Login";
             }
     );
 

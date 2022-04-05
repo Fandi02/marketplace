@@ -19,6 +19,7 @@ namespace marketplace.Datas
 
         public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Alamat> Alamats { get; set; } = null!;
+        public virtual DbSet<DetailOrder> DetailOrders { get; set; } = null!;
         public virtual DbSet<Kategori> Kategoris { get; set; } = null!;
         public virtual DbSet<Keranjang> Keranjangs { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
@@ -115,6 +116,51 @@ namespace marketplace.Datas
                 entity.Property(e => e.Provinsi)
                     .HasMaxLength(25)
                     .HasColumnName("provinsi");
+            });
+
+            modelBuilder.Entity<DetailOrder>(entity =>
+            {
+                entity.ToTable("detail_order");
+
+                entity.HasIndex(e => e.IdOrder, "id_order");
+
+                entity.HasIndex(e => e.IdProduk, "id_produk");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Harga)
+                    .HasPrecision(10)
+                    .HasColumnName("harga");
+
+                entity.Property(e => e.IdOrder)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_order");
+
+                entity.Property(e => e.IdProduk)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_produk");
+
+                entity.Property(e => e.JmlBarang)
+                    .HasColumnType("int(10)")
+                    .HasColumnName("jml_barang");
+
+                entity.Property(e => e.SubTotal)
+                    .HasPrecision(10)
+                    .HasColumnName("sub_total");
+
+                entity.HasOne(d => d.IdOrderNavigation)
+                    .WithMany(p => p.DetailOrders)
+                    .HasForeignKey(d => d.IdOrder)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("detail_order_ibfk_1");
+
+                entity.HasOne(d => d.IdProdukNavigation)
+                    .WithMany(p => p.DetailOrders)
+                    .HasForeignKey(d => d.IdProduk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("detail_order_ibfk_2");
             });
 
             modelBuilder.Entity<Kategori>(entity =>

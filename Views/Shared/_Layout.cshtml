@@ -78,10 +78,29 @@
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i
-												class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" asp-area="" asp-controller="Keranjang"
+											asp-action="Index"><i class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i
 												class="fas fa-search"></i></a>
+										<ul>
+											<li><a href="shop.html"><i class="fas fa-person"></i></a>
+												<ul class="sub-menu">
+													@if (ViewBag.IsLogged != null && ViewBag.IsLogged)
+													{
+														<li><a asp-area="" asp-controller="AccountCustomer"
+															asp-action="Logout">Keluar</a></li>
+													}
+													else
+													{
+														<li><a asp-area="" asp-controller="AccountCustomer"
+															asp-action="Login">Masuk</a></li>
+														<li><a a asp-area="" asp-controller="AccountCustomer"
+															asp-action="Login">Daftar</a></li>
+
+													}
+												</ul>
+											</li>
+										</ul>
 									</div>
 								</li>
 								@if (ViewBag.IsLogged != null && ViewBag.IsLogged)

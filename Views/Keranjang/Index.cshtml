@@ -26,34 +26,42 @@
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="cart-table-wrap">
-                    <table class="cart-table">
-                        <thead class="cart-table-head">
-                            <tr class="table-head-row">
-                                <th class="product-remove"></th>
-                                <th class="product-image">Gambar Produk</th>
-                                <th class="product-name">Nama</th>
-                                @* <th class="product-price">Price</th> *@
-                                <th>Jumlah Barang</th>
-                                <th class="product-quantity">Quantity</th>
-                                <th class="product-total">Sub Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                i++;
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                    <td class="product-image"><img src="~/@item.Image" height="100" /></td>
-                                    <td class="product-name">@item.NamaProduk</td>
-                                    @* <td class="product-price">@item.Harga</td> *@
-                                    <td>@item.JmlBarang</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">@item.Subtotal.ToString("C", new CultureInfo("id-ID"))</td>
+                    <form asp-controller="Order" asp-action="Index">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                                <tr class="table-head-row">
+                                    <th class="product-remove"></th>
+                                    <th class="product-image">Gambar Produk</th>
+                                    <th class="product-name">Nama</th>
+                                    @* <th class="product-price">Price</th> *@
+                                    <th>Jumlah Barang</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-total">Sub Total</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    i++;
+                                    <tr class="table-body-row">
+                                        <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-image"><img src="~/@item.Gambar" height="100" /></td>
+                                        <td class="product-name">@item.NamaProduk</td>
+                                        @* <td class="product-price">@item.Harga</td> *@
+                                        <td>@item.JmlBarang</td>
+                                        <td class="product-quantity"><input type="number" placeholder="0"></td>
+                                        <td class="product-total">@item.Subtotal.ToString("C", new CultureInfo("id-ID"))
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <label>Pilih Alamat Pengiriman</label>
+                        <select name="Alamat" asp-items="@ViewBag.AlamatList"></select>
+                        <br />
+                        <button type="submit" name="Action" value="Checkout">Checkout</button>
+                        <button type="submit" name="Action" value="Simpan">Simpan</button>
+                    </form>
                 </div>
             </div>
 
@@ -83,7 +91,7 @@
                     </table>
                     <div class="cart-buttons">
                         <a href="cart.html" class="boxed-btn">Update Cart</a>
-                        <a href="checkout.html" class="boxed-btn black">Check Out</a>
+                        <a href="" class="boxed-btn black">Check Out</a>
                     </div>
                 </div>
 
@@ -101,3 +109,12 @@
     </div>
 </div>
 <!-- end cart -->
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function(){
+            
+        });
+    </script>
+}

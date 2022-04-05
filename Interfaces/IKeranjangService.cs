@@ -4,4 +4,5 @@ using marketplace.ViewModels;
 public interface IKeranjangService : ICRUDService<Keranjang>
 {
     Task<List<KeranjangViewModel>> Get(int IdPembeli);
+    Task Clear(int idPembeli);  
 }

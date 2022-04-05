@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using marketplace.Interfaces;
 using System.Security.Claims;
 using marketplace.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace marketplace.Controllers;
 
@@ -16,11 +17,12 @@ public class KeranjangController : Controller
 {
     private readonly ILogger<KeranjangController> _logger;
     private readonly IKeranjangService _keranjangService;
-
-    public KeranjangController(ILogger<KeranjangController> logger, IKeranjangService keranjangService)
+    private readonly IAccountService _accountService;
+    public KeranjangController(ILogger<KeranjangController> logger, IKeranjangService keranjangService, IAccountService accountService)
     {
         _logger = logger;
         _keranjangService = keranjangService;
+        _accountService = accountService;
     }
 
     public override void OnActionExecuted(ActionExecutedContext context)
@@ -35,9 +37,9 @@ public class KeranjangController : Controller
     }
 
     public async Task<IActionResult> Index(){
-
-        var result = await _keranjangService.Get(HttpContext.User.Claims.FirstOrDefault(x=>x.Type == ClaimTypes.NameIdentifier).Value.ToInt());
-
+        var idPembeli = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value.ToInt();
+        var result = await _keranjangService.Get(idPembeli);
+        var alamat = await _accountService.GetAlamat(idPembeli);
         return View(result);
     }
 

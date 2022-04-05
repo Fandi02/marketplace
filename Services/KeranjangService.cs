@@ -42,7 +42,11 @@ public class KeranjangService : BaseDbService, IKeranjangService
 
         return obj;
     }
-
+    public async Task Clear(int idPembeli)
+    {
+        dbContext.RemoveRange(dbContext.Keranjangs.Where(x=>x.IdPembeli == idPembeli));
+        await dbContext.SaveChangesAsync();
+    }
     public Task<bool> Delete(int id)
     {
         throw new NotImplementedException();
@@ -81,12 +85,13 @@ public class KeranjangService : BaseDbService, IKeranjangService
                             select new KeranjangViewModel
                             {
                                 Id = a.IdKeranjang,
-                                IdCustomer = a.IdPembeli,
+                                IdPembeli = a.IdPembeli,
                                 IdProduk = a.IdProduk,
-                                Image = b.Gambar,
+                                Gambar = b.Gambar,
                                 JmlBarang = a.JmlBarang,
                                 Subtotal = a.SubTotal,
-                                NamaProduk = b.Nama
+                                NamaProduk = b.Nama,
+                                Harga = b.Harga,
                             }).ToListAsync();
 
         return result;

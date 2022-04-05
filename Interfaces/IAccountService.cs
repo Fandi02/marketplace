@@ -6,4 +6,5 @@ public interface IAccountService
     Task<Admin> Login(string username, string password);
     Task<Pembeli> LoginPembeli(string username, string password);
     Task<Pembeli> Register(RegisterViewModel request);
+    Task<List<Tuple<int, string>>> GetAlamat(int idPembeli);
 }

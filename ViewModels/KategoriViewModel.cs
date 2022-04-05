@@ -15,7 +15,8 @@ namespace marketplace.ViewModels
         [Required]
         public string Nama { get; set; }
         public string Deskripsi { get; set; }
-        public string Icon { get; set; }
+        public string? Icon { get; set; }
+        public IFormFile? iconFile { get; set; }
 
         public Kategori ConvertToDbModel(){
             return new Kategori {

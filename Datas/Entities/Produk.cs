@@ -7,6 +7,7 @@ namespace marketplace.Datas.Entities
     {
         public Produk()
         {
+            DetailOrders = new HashSet<DetailOrder>();
             Keranjangs = new HashSet<Keranjang>();
             ProdukKategoris = new HashSet<ProdukKategori>();
         }
@@ -18,6 +19,7 @@ namespace marketplace.Datas.Entities
         public int Stok { get; set; }
         public string Gambar { get; set; } = null!;
 
+        public virtual ICollection<DetailOrder> DetailOrders { get; set; }
         public virtual ICollection<Keranjang> Keranjangs { get; set; }
         public virtual ICollection<ProdukKategori> ProdukKategoris { get; set; }
     }

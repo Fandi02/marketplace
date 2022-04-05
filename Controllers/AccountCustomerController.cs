@@ -77,7 +77,7 @@ public class AccountCustomerController : Controller
 
             // return RedirectToActionPermanent("Index", "Produk");
             //Agar tidak dapat kembali
-            return RedirectPermanentPreserveMethod("https://localhost::7077");
+            return RedirectPermanentPreserveMethod("https://localhost:7077");
         }
         catch (System.Exception)
         {

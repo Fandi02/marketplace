@@ -24,6 +24,12 @@ public class AccountService : BaseDbService, IAccountService
         return await dbContext.Pembelis.FirstOrDefaultAsync(x=>x.Username == username && x.Password == password);
     }
 
+     public async Task<List<Tuple<int, string>>> GetAlamat(int idPembeli){
+        return await dbContext.Alamats.Where(x=>x.IdPembeli == idPembeli)
+        .Select(x => new Tuple<int, string>(x.IdAlamat, x.Deskripsi))
+        .ToListAsync();
+    }
+
     public async Task<Pembeli> Register(RegisterViewModel request){
         //check username sudah ada atau belum di db
         if(await dbContext.Pembelis.AnyAsync(x=>x.Username == request.Username)){
@@ -39,6 +45,7 @@ public class AccountService : BaseDbService, IAccountService
         if(await dbContext.Pembelis.AnyAsync(x=>x.NoHp == request.NoHp)){
             throw new InvalidOperationException($"{request.NoHp} already exist");
         }
+        
 
         var newCustomer = request.ConvertToDataModel();
         await dbContext.Pembelis.AddAsync(newCustomer);
