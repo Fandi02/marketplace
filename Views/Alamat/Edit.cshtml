@@ -1,0 +1,71 @@
+@model marketplace.ViewModels.AlamatViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Login</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Alamat</h4>
+            <p class="card-description">
+                Edit informasi alamat dalam form berikut
+            </p>
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="IdAlamat" type="hidden" class="form-control">
+                <div class="form-group">
+                    <label asp-for="Provinsi" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Provinsi" asp-for="Provinsi">
+                    <span asp-validation-for="Provinsi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Kota" for="exampleInput1"></label>
+                    <input class="form-control" id="exampleInput1" placeholder="Kota" asp-for="Kota">
+                    <span asp-validation-for="Kota" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Kecamatan" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Kecamatan" asp-for="Kecamatan">
+                    <span asp-validation-for="Kecamatan" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Desa" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Desa" asp-for="Desa">
+                    <span asp-validation-for="Desa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="KodePos" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="KodePos" asp-for="KodePos">
+                    <span asp-validation-for="KodePos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deskripsi" for="exampleInput2"></label>
+                    <input class="form-control" id="exampleInput2" placeholder="Deskripsi" asp-for="Deskripsi">
+                    <span asp-validation-for="Deskripsi" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Edit</button>
+            </form>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

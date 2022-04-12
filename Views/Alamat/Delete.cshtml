@@ -1,0 +1,74 @@
+@model marketplace.ViewModels.AlamatViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Login</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Delete Form</h4>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.Provinsi)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Provinsi)
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.Kota)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Kota)
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.Kecamatan)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Kecamatan)
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.Desa)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Desa)
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.KodePos)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.KodePos)
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    @Html.DisplayNameFor(model => model.Deskripsi)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Deskripsi)
+                </div>
+                <div class="col-sm-9">
+                    
+                </div>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="IdAlamat"/>
+                    <input type="submit" value="Delete" class="btn btn-danger me-2" /> |
+                    <a asp-action="Index" class="btn btn-light">Back to List</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -29,6 +29,7 @@ namespace marketplace.Datas
         public virtual DbSet<Produk> Produks { get; set; } = null!;
         public virtual DbSet<ProdukKategori> ProdukKategoris { get; set; } = null!;
         public virtual DbSet<StatusOrder> StatusOrders { get; set; } = null!;
+        public virtual DbSet<Ulasan> Ulasans { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -240,8 +241,6 @@ namespace marketplace.Datas
 
                 entity.HasIndex(e => e.IdAlamat, "id_alamat");
 
-                entity.HasIndex(e => e.IdKeranjang, "id_keranjang");
-
                 entity.HasIndex(e => e.IdPembeli, "id_pembeli");
 
                 entity.HasIndex(e => e.IdStatusOrder, "id_status_order");
@@ -253,10 +252,6 @@ namespace marketplace.Datas
                 entity.Property(e => e.IdAlamat)
                     .HasColumnType("int(11)")
                     .HasColumnName("id_alamat");
-
-                entity.Property(e => e.IdKeranjang)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("id_keranjang");
 
                 entity.Property(e => e.IdPembeli)
                     .HasColumnType("int(11)")
@@ -274,19 +269,15 @@ namespace marketplace.Datas
                     .HasMaxLength(25)
                     .HasColumnName("notes");
 
-                entity.Property(e => e.TglTransaksi).HasColumnName("tgl_transaksi");
+                entity.Property(e => e.TglTransaksi)
+                    .HasColumnType("datetime")
+                    .HasColumnName("tgl_transaksi");
 
                 entity.HasOne(d => d.IdAlamatNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.IdAlamat)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("order_ibfk_3");
-
-                entity.HasOne(d => d.IdKeranjangNavigation)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.IdKeranjang)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("order_ibfk_1");
 
                 entity.HasOne(d => d.IdPembeliNavigation)
                     .WithMany(p => p.Orders)
@@ -316,6 +307,10 @@ namespace marketplace.Datas
                     .HasColumnType("int(11)")
                     .HasColumnName("id_pembayaran");
 
+                entity.Property(e => e.FileBuktiBayar)
+                    .HasMaxLength(255)
+                    .HasColumnName("file_bukti_bayar");
+
                 entity.Property(e => e.IdOrder)
                     .HasColumnType("int(11)")
                     .HasColumnName("id_order");
@@ -332,11 +327,21 @@ namespace marketplace.Datas
                     .HasMaxLength(25)
                     .HasColumnName("metode_pembayaran");
 
+                entity.Property(e => e.Note)
+                    .HasMaxLength(25)
+                    .HasColumnName("note");
+
                 entity.Property(e => e.Pajak)
                     .HasPrecision(25)
                     .HasColumnName("pajak");
 
-                entity.Property(e => e.TglBayar).HasColumnName("tgl_bayar");
+                entity.Property(e => e.Status)
+                    .HasMaxLength(25)
+                    .HasColumnName("status");
+
+                entity.Property(e => e.TglBayar)
+                    .HasColumnType("datetime")
+                    .HasColumnName("tgl_bayar");
 
                 entity.Property(e => e.Tujuan)
                     .HasMaxLength(255)
@@ -418,13 +423,25 @@ namespace marketplace.Datas
                     .HasColumnType("int(11)")
                     .HasColumnName("id_order");
 
+                entity.Property(e => e.Keterangan)
+                    .HasMaxLength(50)
+                    .HasColumnName("keterangan");
+
                 entity.Property(e => e.Kurir)
-                    .HasColumnType("int(11)")
+                    .HasMaxLength(25)
                     .HasColumnName("kurir");
+
+                entity.Property(e => e.NoResi)
+                    .HasMaxLength(25)
+                    .HasColumnName("no_resi");
 
                 entity.Property(e => e.Ongkir)
                     .HasColumnType("int(11)")
                     .HasColumnName("ongkir");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(12)
+                    .HasColumnName("status");
 
                 entity.HasOne(d => d.IdAlamatNavigation)
                     .WithMany(p => p.Pengirimen)
@@ -525,6 +542,54 @@ namespace marketplace.Datas
                 entity.Property(e => e.Nama)
                     .HasMaxLength(25)
                     .HasColumnName("nama");
+            });
+
+            modelBuilder.Entity<Ulasan>(entity =>
+            {
+                entity.HasKey(e => e.IdUlasan)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("ulasan");
+
+                entity.HasIndex(e => e.IdOrder, "id_order");
+
+                entity.HasIndex(e => e.IdPembeli, "id_pembeli");
+
+                entity.Property(e => e.IdUlasan)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_ulasan");
+
+                entity.Property(e => e.Gambar)
+                    .HasMaxLength(255)
+                    .HasColumnName("gambar");
+
+                entity.Property(e => e.IdOrder)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_order");
+
+                entity.Property(e => e.IdPembeli)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_pembeli");
+
+                entity.Property(e => e.Komentar)
+                    .HasMaxLength(50)
+                    .HasColumnName("komentar");
+
+                entity.Property(e => e.Rating)
+                    .HasColumnType("int(5)")
+                    .HasColumnName("rating");
+
+                entity.HasOne(d => d.IdOrderNavigation)
+                    .WithMany(p => p.Ulasans)
+                    .HasForeignKey(d => d.IdOrder)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("ulasan_ibfk_1");
+
+                entity.HasOne(d => d.IdPembeliNavigation)
+                    .WithMany(p => p.Ulasans)
+                    .HasForeignKey(d => d.IdPembeli)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("ulasan_ibfk_2");
             });
 
             OnModelCreatingPartial(modelBuilder);

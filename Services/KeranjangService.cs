@@ -44,12 +44,22 @@ public class KeranjangService : BaseDbService, IKeranjangService
     }
     public async Task Clear(int idPembeli)
     {
-        dbContext.RemoveRange(dbContext.Keranjangs.Where(x=>x.IdPembeli == idPembeli));
+        dbContext.RemoveRange(dbContext.Keranjangs.Where(x => x.IdPembeli == idPembeli));
         await dbContext.SaveChangesAsync();
     }
-    public Task<bool> Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        throw new NotImplementedException();
+        var keranjang = await dbContext.Keranjangs.FirstOrDefaultAsync(x=>x.IdKeranjang == id);
+
+        if(keranjang == null)
+        {
+            throw new InvalidOperationException("cannot find cart item in database");
+        }
+
+        dbContext.Remove(keranjang);
+        await dbContext.SaveChangesAsync();
+
+        return true;
     }
 
     public Task<List<Keranjang>> Get(int limit, int offset, string keyword)
@@ -72,28 +82,51 @@ public class KeranjangService : BaseDbService, IKeranjangService
         throw new NotImplementedException();
     }
 
-    public Task<Keranjang> Update(Keranjang obj)
+    public async Task<Keranjang> Update(Keranjang obj)
     {
-        throw new NotImplementedException();
-    }
+        var keranjang = await dbContext.Keranjangs.FirstOrDefaultAsync(x=>x.IdKeranjang == obj.IdKeranjang);
 
-    async Task<List<KeranjangViewModel>> IKeranjangService.Get(int idPembeli)
+        if(keranjang == null)
+        {
+            throw new InvalidOperationException("cannot find cart item in database");
+        }
+
+        //get data produk
+        var produk = await _produkService.Get(obj.IdProduk);
+
+        if(produk == null)
+        {
+            throw new InvalidOperationException("Produk tidak ditemukan");
+        }
+
+        if(obj.JmlBarang < 1) 
+        {
+            obj.JmlBarang = 1;
+        }
+        keranjang.SubTotal = produk.Harga * obj.JmlBarang;
+
+        dbContext.Update(keranjang);
+        await dbContext.SaveChangesAsync();
+
+        return keranjang;
+    }
+        async Task<List<KeranjangViewModel>> IKeranjangService.Get(int idPembeli)
     {
-        var result = await (from a in dbContext.Keranjangs
-                            join b in dbContext.Produks on a.IdProduk equals b.IdProduk
-                            where a.IdPembeli == idPembeli
-                            select new KeranjangViewModel
-                            {
-                                Id = a.IdKeranjang,
-                                IdPembeli = a.IdPembeli,
-                                IdProduk = a.IdProduk,
-                                Gambar = b.Gambar,
-                                JmlBarang = a.JmlBarang,
-                                Subtotal = a.SubTotal,
-                                NamaProduk = b.Nama,
-                                Harga = b.Harga,
-                            }).ToListAsync();
+            var result = await(from a in dbContext.Keranjangs
+                               join b in dbContext.Produks on a.IdProduk equals b.IdProduk
+                               where a.IdPembeli == idPembeli
+                               select new KeranjangViewModel
+                               {
+                                   Id = a.IdKeranjang,
+                                   IdPembeli = a.IdPembeli,
+                                   IdProduk = a.IdProduk,
+                                   Gambar = b.Gambar,
+                                   JmlBarang = a.JmlBarang,
+                                   Subtotal = a.SubTotal,
+                                   NamaProduk = b.Nama,
+                                   Harga = b.Harga,
+                               }).ToListAsync();
 
-        return result;
+            return result;
+        }
     }
-}

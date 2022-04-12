@@ -16328,8 +16328,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Alamat\\index.cshtml",
+      "TargetPath": "Views\\Alamat\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Pembelis\\Index.cshtml",
       "TargetPath": "Views\\Pembelis\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Alamat\\Create.cshtml",
+      "TargetPath": "Views\\Alamat\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16373,6 +16383,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Alamat\\Delete.cshtml",
+      "TargetPath": "Views\\Alamat\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Pembelis\\Delete.cshtml",
       "TargetPath": "Views\\Pembelis\\Delete.cshtml",
       "FileKind": "mvc"
@@ -16385,6 +16400,16 @@
     {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Order\\OrderUserDetail.cshtml",
+      "TargetPath": "Views\\Order\\OrderUserDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Order\\OrderUser.cshtml",
+      "TargetPath": "Views\\Order\\OrderUser.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16428,6 +16453,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Alamat\\Edit.cshtml",
+      "TargetPath": "Views\\Alamat\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Register\\index.cshtml",
       "TargetPath": "Views\\Register\\index.cshtml",
       "FileKind": "mvc"
@@ -16460,6 +16490,11 @@
     {
       "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyBook11G\\Documents\\Bimbel Alkademi\\Project\\marketplace\\Views\\Order\\Detail.cshtml",
+      "TargetPath": "Views\\Order\\Detail.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="cart-table-wrap">
-                    <form asp-controller="Order" asp-action="Index">
+                    <form asp-controller="Order" asp-action="Checkout">
                         <table class="cart-table">
                             <thead class="cart-table-head">
                                 <tr class="table-head-row">
@@ -42,14 +42,19 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    <input type="hidden" name="Id" value="@item.Id">
                                     i++;
                                     <tr class="table-body-row">
-                                        <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-remove"><a href="/keranjang/Delete/@item.Id"><i class="far fa-window-close"></i></a></td>
                                         <td class="product-image"><img src="~/@item.Gambar" height="100" /></td>
                                         <td class="product-name">@item.NamaProduk</td>
                                         @* <td class="product-price">@item.Harga</td> *@
                                         <td>@item.JmlBarang</td>
-                                        <td class="product-quantity"><input type="number" placeholder="0"></td>
+                                        <td>
+                                            <input type="number" name="Qty" value="@item.JmlBarang" />
+                                        </td>
+                                        @* <td class="product-quantity"><input type="number" placeholder="0"
+                                            value="@item.JmlBarang"></input></td> *@
                                         <td class="product-total">@item.Subtotal.ToString("C", new CultureInfo("id-ID"))
                                         </td>
                                     </tr>
@@ -112,9 +117,9 @@
 
 
 @section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function(){
-            
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
 }

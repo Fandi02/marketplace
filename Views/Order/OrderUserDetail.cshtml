@@ -1,0 +1,170 @@
+@using System.Globalization
+@using marketplace.Helpers
+@model marketplace.ViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "Detail Pesananan";
+    int i = 0;
+}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Detail Pesanan</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<h1>Detail pesanan</h1>
+
+<table style="border: 1px solid grey">
+    <tr>
+        <td>Nomer Order</td>
+        <td>@Model.IdOrder</td>
+        <td>Nama Pembeli</td>
+        <td>@Model.Nama</td>
+        <td>Status</td>
+        <td>@Model.Status</td>
+        <td>Alamat</td>
+        <td>@Model.Alamat</td>
+    </tr>
+</table>
+
+</table>
+
+<h1>Daftar Item</h1>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#No</th>
+      <th scope="col">Nama Produk</th>
+      <th scope="col">Harga</th>
+      <th scope="col">Jumlah</th>
+      <th scope="col">Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var item in Model.Details)
+      {      
+          i++;
+        <tr>
+        <td scope="row">@i</td>
+        <td>@item.Produk</td>
+        <td>@item.Harga</td>
+        <td>@item.Qty</td>
+        <td>@item.SubTotal</td>
+        </tr>   
+      }
+    </tbody>
+</table>
+
+@if(Model.IdStatus == AppConstant.StatusOrder.MASUK)
+{
+    <form asp-action="bayar" asp-controller="Order" enctype="multipart/form-data">
+        <input type="hidden" name="IdOrder" value="@Model.IdOrder" />
+        <input type="hidden" name="IdPembeli" value="@Model.IdOrder" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mb-3">
+            <label for="TglBayar" class="control-label">Pilih Tgl Bayar</label>
+            <input name="TglBayar" type="date" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="JmlBayar" class="control-label">Total Bayar</label>
+            <input name="JmlBayar" type="number" class="form-control" readonly value="@(Model.TotalBayar + 11000)" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="MetodePembayaran" class="control-label">Metode Bayar</label>
+            <input name="MetodePembayaran" type="text" class="form-control" value="Bank Transfer" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="Tujuan" class="control-label">Tujuan Pembayaran</label>
+            <input name="Tujuan" type="text" class="form-control" readonly value="12421421424" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="FileBuktiBayar" class="control-label">Upload Bukti Bayar</label>
+            <input name="FileBuktiBayar" type="file" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="Note" class="control-label">Catatan</label>
+            <input name="Note" type="text" class="form-control" />
+        </div>
+        <button class="btn btn-primary" type="submit">Kirim</button>
+    </form>
+} else {
+    <table>
+    <tbody>
+        <tr>
+            <td>Tanggal Bayar</td>
+            <td>@Model.Pembayaran.TglBayar.ToLongDateString() @Model.Pembayaran.TglBayar.ToShortTimeString()</td>
+            <td>Metode Pembayaran Bayar</td>
+            <td>@Model.Pembayaran.Metode</td>
+        </tr>
+        <tr>
+            <td>Total Bayar</td>
+            <td>@Model.Pembayaran.JmlBayar.ToIDR()</td>
+            <td>ID Tujuan Pembayaran</td>
+            <td>@Model.Pembayaran.Tujuan</td>
+        </tr>
+        <tr>
+            <td>Bukti Pembayaran</td>
+            <td><img src="~/@Model.Pembayaran.FileBuktiBayar" height="250" /></td>
+        </tr>
+    </tbody>
+</table>
+}
+
+@if(Model.IdStatus == AppConstant.StatusOrder.DIKIRIM || Model.IdStatus == AppConstant.StatusOrder.DITERIMA){
+    <table>
+    <tbody>
+        
+        <tr>
+            <td>No. Resi</td>
+            <td>@Model.Pengiriman.NoResi</td>
+        </tr>
+        <tr>
+            <td>Kurir</td>
+            <td>@Model.Pengiriman.Kurir</td>
+        </tr>
+        <tr>
+            <td>Ongkir</td>
+            <td>@Model.Pengiriman.Ongkir.ToIDR()</td>
+        </tr>
+        <tr>
+            <td>Keterangan</td>
+            <td>@Model.Pengiriman.Keterangan</td>
+        </tr>
+    </tbody>
+</table>
+
+@if(Model.IdStatus == AppConstant.StatusOrder.DIKIRIM)
+
+{
+    <form asp-action="review" asp-controller="order" enctype="multipart/form-data">
+    <input type="hidden" name="IdOrder" value="@Model.IdOrder" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="form-group mb-3">
+            <label for="Komentar" class="control-label">Ulas produk</label>
+            <input name="Komentar" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Rating" class="control-label">kasih bintang kakak</label>
+            <input name="Rating" type="number" maxlength="5" minlength="1" class="form-control" />
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="Gambar" class="control-label">Upload gambar produk mu</label>
+            <input name="Gambar" type="file" class="form-control" />
+        </div>
+
+        <button class="btn btn-primary">Kirim</button>
+        
+</form>
+}
+}

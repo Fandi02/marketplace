@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace marketplace.Controllers;
 
 [Authorize(Roles = AppConstant.ADMIN_ROLE)]
-public class ProdukController : Controller
+public class ProdukController : BaseController
 {
     private readonly IProdukService _produkService;
     private readonly IKategoriService _kategoriService;

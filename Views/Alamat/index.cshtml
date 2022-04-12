@@ -1,0 +1,78 @@
+@model IEnumerable<marketplace.ViewModels.AlamatViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    int i = 0;
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Login</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">List Alamat</h4>
+            <p class="card-description">
+                <a asp-action="Create">Tambah Alamat</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Provinsi</th>
+                            <th>Kota</th>
+                            <th>Kecamatan</th>
+                            <th>Desa</th>
+                            <th>Kode Pos</th>
+                            <th>Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.Provinsi</td>
+                                    <td>@item.Kota</td>
+                                    <td>@item.Kecamatan</td>
+                                    <td>@item.Desa</td>
+                                    <td>@item.KodePos</td>
+                                    <td>@item.Deskripsi</td>
+                                    <td></td>
+                                    <td>
+                                        <i class="mdi mdi-pencil"></i>
+                                        <a href="/Alamat/edit/@item.IdAlamat">Edit</a><br><br>
+                                        <i class="mdi mdi-delete"></i>
+                                        <a href="/Alamat/delete/@item.IdAlamat">Hapus</a><br><br>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4">Data kosong</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

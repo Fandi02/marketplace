@@ -1,0 +1,47 @@
+@using System.Globalization
+@model List<marketplace.ViewModels.OrderViewModel>
+@{
+    ViewData["Title"] = "Pesanan saya";
+    int i = 0;
+}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Daftar Pesanan</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<h1>Daftar pesanan</h1>
+
+<table class="table table-dark">
+  <thead>
+
+      <th scope="col">No</th>
+      @* <th>Detail</th> *@
+      <th scope="col">Tgl Transaksi</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total bayar</th>
+
+  </thead>
+  <tbody>
+      @foreach (var item in Model)
+      {      
+        i++;
+        <tr>
+        <td scope="row">@i</td>
+        <td>@item.TglOrder.ToLongDateString() @item.TglOrder.ToLongTimeString()</td>
+        <td>@item.Status</td>
+        <td>@item.TotalBayar.ToString("C", new CultureInfo("id-ID"))</td>
+        <td><a href="/Order/OrderUserDetail/@item.IdOrder">Detail</a></td>
+        </tr>   
+      }
+    </tbody>
+    </table>

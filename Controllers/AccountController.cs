@@ -74,7 +74,7 @@ public class AccountController : Controller
             #endregion
 
             // return RedirectToActionPermanent("Index", "Produk");
-            //Agar tidak dapa kembali
+            //Agar tidak dapat kembali
             return RedirectPermanentPreserveMethod("https://localhost::7077/produk/index");
         }
         catch (System.Exception)

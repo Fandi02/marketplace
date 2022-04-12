@@ -10,9 +10,12 @@ namespace marketplace.Datas.Entities
         public int IdOrder { get; set; }
         public int IdPembeli { get; set; }
         public decimal JmlBayar { get; set; }
-        public DateOnly TglBayar { get; set; }
+        public DateTime TglBayar { get; set; }
         public decimal Pajak { get; set; }
         public string Tujuan { get; set; } = null!;
+        public string Status { get; set; } = null!;
+        public string Note { get; set; } = null!;
+        public string FileBuktiBayar { get; set; } = null!;
 
         public virtual Order IdOrderNavigation { get; set; } = null!;
         public virtual Pembeli IdPembeliNavigation { get; set; } = null!;

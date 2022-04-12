@@ -10,6 +10,7 @@ namespace marketplace.Datas.Entities
             Keranjangs = new HashSet<Keranjang>();
             Orders = new HashSet<Order>();
             Pembayarans = new HashSet<Pembayaran>();
+            Ulasans = new HashSet<Ulasan>();
         }
 
         public int IdPembeli { get; set; }
@@ -24,5 +25,6 @@ namespace marketplace.Datas.Entities
         public virtual ICollection<Keranjang> Keranjangs { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Pembayaran> Pembayarans { get; set; }
+        public virtual ICollection<Ulasan> Ulasans { get; set; }
     }
 }
